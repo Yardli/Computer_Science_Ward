@@ -1,0 +1,2 @@
+for s in[*open(0)][1:]:n,m,k=map(int,s.split());c=n*n-n>>1;print('NYOE S'[(n-2<m<=c)&(m>1<k-2or n<2<k+1or
+k>2>m%c)::2])
