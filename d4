@@ -1,0 +1,58 @@
+#include<cstdio>
+#include<cstring>
+#include<cmath>
+#include<algorithm>
+#include<string>
+#include<map>
+#include<set>
+#include<list>
+#include<iostream>
+
+using namespace std;
+int a[405][405];
+int b[405][405];
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,m;
+		int mn=16;
+		scanf("%d%d",&n,&m);
+		for(int i=1;i<=n;i++)
+		{
+			for(int j=1;j<=m;j++)
+			{
+				scanf("%1d",&a[i][j]);
+				b[i][j]=b[i][j-1]+b[i-1][j]-b[i-1][j-1]+a[i][j];
+			}
+		}
+		for(int i=1;i<=n;i++)
+		{
+			for(int k=4;i+k<=n;k++)
+			{
+				for(int j=1;j<=m;j++)
+				{
+					for(int l=3;l+j<=m;l++)
+					{
+						int l1=b[i+k-1][l+j-1]-b[i][l+j-1]-b[i+k-1][j]+b[i][j];
+						int w1=b[i+k][l+j]-b[i-1][l+j]-b[i+k][j-1]+b[i-1][j-1]-l1;
+						int w0=l*2+k*2-w1;
+						int xx=b[i+k-1][j+l-1]-b[i-1][j+l-1]-b[i+k-1][j-1]+b[i-1][j-1];
+						xx=xx-l1;
+						xx=k+l-1-xx;
+						if(a[i][j]==0) xx--;
+						if(xx+l1>=16) break;
+						if(a[i][j]==0) w0--;
+						if(a[i][j+l]==0) w0--;
+						if(a[i+k][j]==0) w0--;
+						if(a[i+k][j+l]==0) w0--;
+						mn=min(mn,w0+l1);
+					}
+				} 
+			}
+		}
+		cout<<mn<<'\n';
+	}
+}
