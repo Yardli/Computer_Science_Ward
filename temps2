@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+#define ll  long long
+#define lli  long long int
+#define fi first
+#define se second
+#define alli (s) s.begin(),s.end()
+#define vii vector<pair<int ,int >>
+#define vlli  vector<pair<lli ,lli >>
+#define INF 1000000000
+#define MINF -100000000
+#define mod 1000000007
+using namespace std;
+int fact[1000001];
+void   solve()
+    {
+        ll  i,j,n,m,x,q,k,ans=0,a,b,y,z;
+
+            string str;
+
+            cin>>n;
+            ll sum=0;
+            ll arr[n+2],l1=0,l2=0;
+            for(i=0;i<n+2;i++){
+                cin>>arr[i];
+                sum+=arr[i];
+                if(arr[i]>arr[l2])l2=i;
+            }
+
+
+
+            x=0;
+            for(i=0;i<n+2;i++){if(arr[i]>x&&arr[i]!=arr[l2]){l1=i;x=arr[i];}}
+            sum=sum-arr[l2];
+            for(i=0;i<n+2;i++)
+            {
+                if(i==l2)
+                    continue;
+                if((sum-arr[i])==arr[l2])
+                {
+                    for(j=0;j<n+2;j++)
+                    {
+                        if(j!=l2&&j!=i)
+                            cout<<arr[j]<<" ";
+
+                    }
+                          cout<<endl;
+                          return;
+                }
+
+            }
+
+            sum=sum+arr[l2];
+            sum=sum-arr[l1];
+              for(i=0;i<n+2;i++)
+            {
+                if(i==l1)
+                    continue;
+                if((sum-arr[i])==arr[l1])
+                {
+                    for(j=0;j<n+2;j++)
+                    {
+                        if(j!=l1&&j!=i)
+                            cout<<arr[j]<<" ";
+
+                    }
+                          cout<<endl;
+                          return;
+                }
+
+            }
+            cout<<"-1\n";
+
+
+    }
+
+int  main(void)
+    {
+
+        ll  t=1,i,j,n;
+
+
+        string str,str1;
+        int p=1;
+
+
+
+
+        cin>>t;
+        while(t--)
+        {
+            solve();
+        }
+    }
